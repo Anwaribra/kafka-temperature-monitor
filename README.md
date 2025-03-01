@@ -61,8 +61,10 @@ Temperature readings are stored with the following information:
 - Timestamp
 - Status (NORMAL, WARNING, or CRITICAL)
 
+```
 ## Status Classification
 
 - **NORMAL**: Temperature ≤ 25°C
 - **WARNING**: Temperature between 25°C and 30°C
-- **CRITICAL**: Temperature > 30°C 
+- **CRITICAL**: Temperature > 30°C
+  ```
