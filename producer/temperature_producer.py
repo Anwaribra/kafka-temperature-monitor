@@ -25,7 +25,7 @@ def create_producer(max_retries=5, retry_interval=5):
                 request_timeout_ms=30000,
                 connections_max_idle_ms=540000
             )
-            # Test if the producer is connected by getting metadata
+            
             producer.bootstrap_connected()
             print("Successfully connected to Kafka!")
             return producer
@@ -38,9 +38,9 @@ def create_producer(max_retries=5, retry_interval=5):
 
 def generate_temperature(sensor_id):
     """Generate a random temperature reading for a sensor."""
-    # Simulate different baseline temperatures for different sensors
+    
     base_temp = 20 + (hash(sensor_id) % 10)
-    # Add some random variation
+    
     variation = random.uniform(-2.0, 5.0)
     return round(base_temp + variation, 1)
 
@@ -52,7 +52,7 @@ def simulate_sensors(producer):
     try:
         while True:
             for sensor_id in sensor_ids:
-                # Generate temperature reading
+                
                 temperature = generate_temperature(sensor_id)
                 
                 # Create message
@@ -66,10 +66,10 @@ def simulate_sensors(producer):
                 producer.send(KAFKA_TOPIC, message)
                 print(f"Sent: {message}")
             
-            # Flush to ensure all messages are sent
+            
             producer.flush()
             
-            # Wait before next batch
+            
             time.sleep(INTERVAL_SECONDS)
     except KeyboardInterrupt:
         print("Stopping temperature simulation...")
